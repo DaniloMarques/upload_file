@@ -1,0 +1,76 @@
+<!doctype html>
+
+<html lang="pt_br">
+<head>
+<meta charset="utf-8" />
+<title>jQuery UI Sortable - Connect lists</title>
+<link rel="stylesheet"
+	href="http://code.jquery.com/ui/1.9.0/themes/base/jquery-ui.css" />
+<script src="js/jquery-1.8.2.js"></script>
+<script src="js/jquery-ui-1.9.0.custom.mim.js"></script>
+<script src="js/jquery-ui-1.9.0.custom.js"></script>
+<style>
+#sortable1,#sortable2 {
+	list-style-type: none;
+	margin: 0;
+	padding: 0 0 2.5em;
+	float: left;
+	margin-right: 10px;
+}
+
+#sortable1 li,#sortable2 li {
+	margin: 0 5px 5px 5px;
+	padding: 5px;
+	font-size: 1.2em;
+	width: 120px;
+	height: 10px
+}
+
+.remover {
+	width: 30px;
+	height: 10px;
+	position: absolute;
+	float: right;
+}
+</style>
+<script>
+	$(function() {
+		$("#sortable1, #sortable2").sortable({
+			connectWith : ".connectedSortable"
+		}).disableSelection();
+
+		$('#hideshowarea').hide();
+
+		$('.ui-state-default').click(function() {
+			$('#hideshowarea').show(1000);
+		});
+		
+		$('#hideshowarea').click(function(){
+			console.info($('#hideshowarea').parent());
+			$('#hideshowarea').parent().hide(300);
+		});
+
+	});
+</script>
+</head>
+<body>
+
+	<ul id="sortable1" class="connectedSortable">
+		<li class="ui-state-default"Item 1><div class="remover"id="hideshowarea" >remover</div></li>
+		<li class="ui-state-default"Item 2></li>
+		<li class="ui-state-default"Item 3></li>
+		<li class="ui-state-default"Item 4></li>
+		<li class="ui-state-default"Item 5></li>
+	</ul>
+
+	<ul id="sortable2" class="connectedSortable">
+		<li class="ui-state-highlight"Item 1></li>
+		<li class="ui-state-highlight"Item 2></li>
+		<li class="ui-state-highlight"Item 3></li>
+		<li class="ui-state-highlight"Item 4></li>
+		<li class="ui-state-highlight"Item 5></li>
+	</ul>
+
+
+</body>
+</html>
